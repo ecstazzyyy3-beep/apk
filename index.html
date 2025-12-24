@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>The Apk Lab — FNaF 2 Mod</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+  <h1>The <span>Apk</span> Lab</h1>
+  <p class="subtitle">Android mods & experiments</p>
+</header>
+
+<main>
+  <div class="card">
+
+    <div class="apk">
+      <img src="icon.png" alt="APK Icon">
+      <div>
+        <h2>FNaF 2 Mod</h2>
+        <p class="version">Версия: <b>2.0.7</b></p>
+      </div>
+    </div>
+
+    <p class="desc">
+      Five Nights at Freddy’s 2 переносит игрока в новую пиццерию с обновлёнными аниматрониками.
+      В отличие от первой части, персонажи стали агрессивнее, а механики — сложнее.
+      Теперь у охранника нет дверей — только маска Фредди и ограниченные инструменты защиты.
+    </p>
+
+    <div class="stats">
+      <div>📦 Размер: <span id="apkSize">—</span></div>
+      <div>⬇ Скачиваний: <span id="downloads">—</span></div>
+    </div>
+
+    <a href="FNaF2ModByTheApkLab.apk" download class="download-btn" id="downloadBtn">
+      ⬇ Скачать APK
+    </a>
+
+  </div>
+</main>
+
+<footer>
+  The Apk Lab inc. © 2025<br>
+  Все права защищены.
+</footer>
+
+<script>
+/* ===== Реальный онлайн-счётчик ===== */
+const counterURL = "https://api.countapi.xyz/hit/theapklab/fnaf2mod";
+
+fetch(counterURL)
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("downloads").textContent = data.value;
+  });
+
+/* ===== Размер APK ===== */
+fetch("FNaF2ModByTheApkLab.apk", { method: "HEAD" })
+  .then(res => {
+    const bytes = res.headers.get("Content-Length");
+    if (bytes) {
+      const mb = (bytes / 1024 / 1024).toFixed(2);
+      document.getElementById("apkSize").textContent = mb + " MB";
+    }
+  });
+</script>
+
+</body>
+</html>
